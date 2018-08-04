@@ -7,7 +7,7 @@ function handleRequest(request, response) {
     response.end("Good, it works! " + request.url);
 }
 
-var server1 = http.createServer(handleRequest1);
+var server1 = http.createServer(handleRequest);
 var server2 = http.createServer(handleRequest2);
 
 server1.listen(PORT, function (){
@@ -30,7 +30,7 @@ var negativePhrase = ["Bad", "Worse", "The Worse"];
 randomBadPhrase = Math.floor(Math.random() * negativePhrase.length);
 console.log(randomBadPhrase);
 
-function handleRequest1(request, response) {
+function handleRequest(request, response) {
     response.end(goodPhrase[randomGoodPhrase]);
 }
 
