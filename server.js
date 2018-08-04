@@ -7,27 +7,33 @@ function handleRequest(request, response) {
     response.end("Good, it works! " + request.url);
 }
 
-var server = http.createServer(handleRequest);
+var server1 = http.createServer(handleRequest1);
+var server2 = http.createServer(handleRequest2);
 
-server.listen(PORT, function good() {
+server1.listen(PORT, function (){
     console.log("Positive Port: http://localhost:" + PORT)
 });
 
-server.listen(PORT2, function bad() {
+server2.listen(PORT2, function () {
     console.log("Negative Port: http://localhost:" + PORT2)
 });
 
+//display positive phrase when PORT is used
+var goodPhrase = ["Good", "Better", "The Best"];
 
-var goodPhrase = ["Good", "Better", "The best"];
+randomGoodPhrase = Math.floor(Math.random() * goodPhrase.length);
+console.log(randomGoodPhrase);
 
-randomGoodPhrase = Math.floor(Math.Random() * goodPhrase.length);
+var negativePhrase = ["Bad", "Worse", "The Worse"];
 
-var negativePhrase = ["Bad", "worse", "The worse"];
+//display negative phrase when PORT2 is used
+randomBadPhrase = Math.floor(Math.random() * negativePhrase.length);
+console.log(randomBadPhrase);
 
-randomBadPhrase = Math.floor(Math.Random() * negativePhrase.length);
+function handleRequest1(request, response) {
+    response.end(goodPhrase[randomGoodPhrase]);
+}
 
-if ( good() == true ) {
-    console.log(randomGoodPhrase);
-} else {
-    console.log(randomBadPhrase);
-};
+function handleRequest2(request, response) {
+    response.end(negativePhrase[randomBadPhrase]);
+}
